@@ -17,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
+        myWebView.loadUrl("https://his.se");
     }
 
     public void showInternalWebPage(){
         // TODO: Add your code for showing internal web page here
+        myWebView.loadUrl("file:///assets/about.html");
     }
 
     @Override
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient()); // Do not open in chrome
-        myWebView.loadUrl("https://his.se");
 
 
         /*
