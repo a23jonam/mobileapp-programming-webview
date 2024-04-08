@@ -1,42 +1,45 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+The name of the app was changed to "Lore Archive" to make it more fitting
+considering the contents of the internal webpage, even though it is far
+from an actual archive. 
 
-_Du kan ta bort all text som finns sedan tidigare_.
+The first actual change that was made in the project
+was to enable internet access, because the external webpage will not be
+able to function without it.
 
-## Följande grundsyn gäller dugga-svar:
+I then replaced the existing "TextView" in activity_main.xml 
+with a "WebView" and created a new object instance. Used "loadUrl"
+to load an external webpage, in this case www.his.se, but to get access
+to all its features, the app requires javascript so it became the logical
+next step to proceed with the assignment.
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+One of the final steps was to create a html-file so the internal webpage
+could load it. I filled the content of the html-file with something that
+fit the name of the app, using very simple html code. Then I properly
+listed the directory in the method for showing the internal webpage. At
+this stage, the app is very simple but it works as intended.
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
+In this code snippet, the last few lines of code shows how I did to enable
+JavaScript in the app. It also insures that the WebView is working as
+intended.
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        myWebView = findViewById(R.id.my_webview);
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient());
+
     }
-}
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
+![img.png](img.png) ![img_1.png](img_1.png)
 
-![](android.png)
-
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
